@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="form.css">
+    <script src="https://kit.fontawesome.com/7cf18dcfa7.js" crossorigin="anonymous"></script>
+    <title>Cadastro</title>
+</head>
+<body>
+     <div id = "form"> 
+        <form class="form">
+
+            <h2 class="title">Cadastrar</h2>
+
+            <label for="username">
+                Nome
+            </label>
+            <div class="input">
+                <i class="fa-solid fa-user-plus"></i>
+                <input id="username" name="username" placeholder="Nome" type="text">
+            </div>
+
+            <label for="email">
+                Email
+            </label>
+            <div class="input">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <input id="email" name="email" placeholder="Email" type="text">
+            </div>
+
+            <label for="senha">
+                Senha
+            </label>
+            <div class="input">
+                <i class="fa-solid fa-key"></i>
+                <input id="senha" name="senha" placeholder="Senha" type="text">
+            </div>
+
+            <div id="btn">
+                <button type="submit">Cadastrar</button>
+            </div>
+
+        </form>
+    </div>
+    <script>
+        const formEl = document.querySelector('.form');
+
+        if(formEl){
+
+            formEl.addEventListener('submit', event => {
+            event.preventDefault();
+
+            const formData = new FormData(formEl)
+            const data = Object.fromEntries(formData);
+            
+            fetch('http://127.0.0.1:8080/itens/save', {
+                method:'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(data)
+            });
+        })
+
+        }
+       
+
+
+    </script>
+
+</body>
+</html>
